@@ -1,0 +1,25 @@
+# Python кэш
+__pycache__/
+*.py[cod]
+
+# Виртуальное окружение
+venv/
+env/
+
+# Логи
+*.log
+*.pyc
+
+# Конфиденциальные данные
+.env
+
+# Базы данных SQLite
+db.sqlite3
+
+# Миграции
+*/migrations/*.py
+!*/migrations/__init__.py
+
+# IDE/редактор
+.vscode/
+.idea/
