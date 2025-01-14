@@ -1,6 +1,7 @@
 # Python кэш
 __pycache__/
 *.py[cod]
+.pylintrc
 
 # Виртуальное окружение
 venv/
@@ -23,3 +24,4 @@ db.sqlite3
 # IDE/редактор
 .vscode/
 .idea/
+media/
