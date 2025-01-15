@@ -1,4 +1,4 @@
-# Store Project 🛒
+# Heavy Aura 🛒
 
 This is a Django-based e-commerce web application that includes user authentication, product management, order processing, and payment gateway integration. 
 
