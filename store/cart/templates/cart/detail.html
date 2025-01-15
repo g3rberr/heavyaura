@@ -58,7 +58,7 @@
             
             {% with cart_quantity=cart|length %}
                 {% if cart_quantity > 0 %}
-                    <a href="#" class="cart-btn">Checkout</a>
+                    <a href="{% url 'orders:order_create' %}" class="cart-btn">Checkout</a>
                 {% endif %}
             {% endwith %}                
         </div>
