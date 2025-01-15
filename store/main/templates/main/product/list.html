@@ -3,6 +3,12 @@
 
 
 
+{% block title %}
+    Shop
+{% endblock title %}
+    
+
+
 {% block content %}
     <div class="llist d-flex">
         <div class="sidebar">
@@ -34,7 +40,7 @@
                                 {% if product.discount %}
                                 <div class="card-discount d-flex gap-2">
                                     <p class="line">{{ product.price }}</p>
-                                    <p>{{ product.sell_price }}</p>
+                                    <p class="price pt-2">$ {{ product.sell_price }}</p>
                                 </div>
                             {% else %}
                                 <p class="price">product.price</p>
@@ -60,6 +66,7 @@
                 </li>
             </ul>
         </div>
+        <div class="mainvl"></div>
     </div>
 {% endblock content %}
     
