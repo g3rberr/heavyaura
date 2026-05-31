@@ -1,0 +1,4 @@
+Django>=5.1.4,<5.2
+stripe>=5.0.0
+Pillow>=10.0.0
+psycopg2-binary>=2.9.0
