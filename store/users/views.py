@@ -31,12 +31,12 @@ def register(request):
             user = form.instance
             auth.login(request, user)
             messages.success(
-                request, f'{user.username}, Succesful Registration!'
+                request, f'{user.username}, Successful Registration!'
             )
-            return HttpResponseRedirect(reverse('user:login'))
+            return HttpResponseRedirect(reverse('main:popular_list'))
     else:
         form = UserRegistrarionForm()
-    return render(request, 'users/register.html')
+    return render(request, 'users/register.html', {'form': form})
 
 
 @login_required
