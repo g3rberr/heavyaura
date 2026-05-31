@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib import auth, messages
 from django.urls import reverse
 from django.http import HttpResponseRedirect
-from .forms import UserLoginForm, UserRegistrarionForm, \
+from .forms import UserLoginForm, UserRegistrationForm, \
     ProfileForm
 from django.contrib.auth.decorators import login_required
 from django.db.models import Prefetch
@@ -25,7 +25,7 @@ def login(request):
 
 def register(request):
     if request.method == 'POST':
-        form = UserRegistrarionForm(data=request.POST)
+        form = UserRegistrationForm(data=request.POST)
         if form.is_valid():
             form.save()
             user = form.instance
@@ -35,7 +35,7 @@ def register(request):
             )
             return HttpResponseRedirect(reverse('main:popular_list'))
     else:
-        form = UserRegistrarionForm()
+        form = UserRegistrationForm()
     return render(request, 'users/register.html', {'form': form})
 
 
