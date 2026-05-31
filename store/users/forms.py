@@ -14,7 +14,7 @@ class UserLoginForm(AuthenticationForm):
         fields = ['username', 'password']
         
     
-class UserRegistrarionForm(UserCreationForm):
+class UserRegistrationForm(UserCreationForm):
     class Meta:
         model = User
         fields = (
@@ -25,12 +25,6 @@ class UserRegistrarionForm(UserCreationForm):
             'password1',
             'password2',
         )
-        first_name = forms.CharField()
-        last_name = forms.CharField()
-        username = forms.CharField()
-        email = forms.CharField()
-        passowrd1 = forms.CharField()
-        password2 = forms.CharField()
         
         
 class ProfileForm(UserChangeForm):
@@ -43,9 +37,3 @@ class ProfileForm(UserChangeForm):
             'username',
             'email',
         )
-        
-        image = forms.ImageField(required = False)
-        first_name = forms.CharField()
-        last_name = forms.CharField()
-        username = forms.CharField()
-        email = forms.CharField()

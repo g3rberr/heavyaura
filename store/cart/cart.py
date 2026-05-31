@@ -20,9 +20,10 @@ class Cart:
             self.cart[product_id]['quantity'] = quantity
         else:
             self.cart[product_id]['quantity'] += quantity
-            
+        self.save()
+
     def save(self):
-        self.session.modifed = True
+        self.session.modified = True
     
     def remove(self, product):
         product_id = str(product.id)
@@ -50,20 +51,15 @@ class Cart:
         
     
     def get_total_price(self):
-        total = sum((Decimal(item['price']) - (Decimal(item['price'])  
-            * Decimal(item['product'].discount / 100))) * item['quantity']
-                for item in self.cart.values())
-        return format(total, '.2f')        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
+        product_ids = list(self.cart.keys())
+        products = Product.objects.filter(id__in=product_ids)
+        product_map = {str(p.id): p for p in products}
+        total = Decimal(0)
+        for pid, item in self.cart.items():
+            product = product_map.get(pid)
+            if product is None:
+                continue
+            price = Decimal(item['price'])
+            discount = Decimal(product.discount) if product.discount else Decimal(0)
+            total += (price - price * discount / Decimal(100)) * item['quantity']
+        return format(total, '.2f')
