@@ -12,14 +12,21 @@
 {% block content %}
     <div class="detail-product d-flex">
         <div class="detail-img">
-            
-            {% for image in product.images.all %}
-                <img class="detail-image" src="{{ image.image.url }}" alt="" style="display: none;" data-index="{{ forloop.counter0 }}">
-            {% endfor %}
+            {% with images=product.images.all %}
+                {% if images %}
+                    {% for image in images %}
+                        <img class="detail-image" src="{{ image.image.url }}" alt="" style="display: none;" data-index="{{ forloop.counter0 }}">
+                    {% endfor %}
+                {% elif product.image %}
+                    <img class="detail-image" src="{{ product.image.url }}" alt="" style="display: block;" data-index="0">
+                {% else %}
+                    <img class="detail-image" src="{% static 'img/noimage.jpg' %}" alt="" style="display: block;" data-index="0">
+                {% endif %}
                 <div class="image-nav">
                     <button class="prev-btn">&lsaquo;</button>
                     <button class="next-btn">&rsaquo;</button>
                 </div>
+            {% endwith %}
         </div>
         <script>
             const images = document.querySelectorAll('.detail-image');
@@ -27,9 +34,11 @@
             const nextBtn = document.querySelector('.next-btn');
             let currentIndex = 0;
 
-            images[currentIndex].style.display = 'block';
+            if (images.length > 0) {
+                images[currentIndex].style.display = 'block';
+            }
 
-            if (images.length === 1) {
+            if (images.length <= 1) {
                 prevBtn.style.display = 'none';
                 nextBtn.style.display = 'none';
             } else {
